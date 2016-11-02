@@ -3,6 +3,7 @@
 Created on Thu Nov  3 00:21:46 2016
 
 @author: user1
+led_blink program
 """
 
 import RPi.GPIO as Gpio #Import raspberry pi library
