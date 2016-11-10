@@ -15,29 +15,6 @@ GPIO.setup(LEDPIN, GPIO.OUT)
 count=0
 
 try:
-#    while count < 100 :
-#        GPIO.output(LEDPIN, GPIO.HIGH)
-#        time.sleep(0.0000001)
-#        GPIO.output(LEDPIN, GPIO.LOW)
-#        time.sleep(0.0199999)
-#        count += 1
-#    count=0
-#    time.sleep(1)
-#    while count < 100 :
-#        GPIO.output(LEDPIN, GPIO.HIGH)
-#        time.sleep(0.005)
-#        
-#        GPIO.output(LEDPIN, GPIO.LOW)
-#        time.sleep(0.015)
-#        count += 1
-#    count=0
-#    time.sleep(1)
-#    while count < 100 :
-#        GPIO.output(LEDPIN, GPIO.HIGH)
-#        time.sleep(0.015)
-#        GPIO.output(LEDPIN, GPIO.LOW)
-#        time.sleep(0.005)
-#        count += 1
     for i in range(0,20000,50):
         count = 0
         while count < 1:
