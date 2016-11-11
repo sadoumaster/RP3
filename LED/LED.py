@@ -27,7 +27,7 @@ class LED():
 
     def pwm(self, power = 100, time = 0.1, Hz = 50):
         if (power < 0) & (power > 100):
-            print('Input power between 1 and 100')
+            print('Input power between 0 and 100')
             pass
         if Hz < 1 :
             print('input Hz bigger than 1')
