@@ -23,7 +23,7 @@ def sin_curve_pwm():
         print ('end')
 
 def blink_1f_pwm():
-    from RP3.1_f import curve_1f_generator
+    from RP3.curve1f import curve_1f_generator
     with LED.LED(4) as Blueled:
         while True:
             fluctuation = curve_1f_generator()#-1.5~1.5の数字
