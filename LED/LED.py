@@ -18,7 +18,7 @@ class LED():
         self.GPIO_PIN = GPIO_PIN_No
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.GPIO_PIN, GPIO.OUT)
-        print ('set % PIN for LED'.format(self.GPIO_PIN))
+        print ('set GPIO{} for LED'.format(self.GPIO_PIN))
     
     def blink(self, duration = 0.5, interval = 0.5 ,times = 5):
         for i in range(times):
@@ -51,8 +51,8 @@ class LED():
         return self
         
     def __exit__(self, type, value, traceback):
-        GPIO.cleanup()
-        print('Cleanup GPIO PINs')
+        GPIO.cleanup(self.GPIO_PIN)
+        print('Cleanup GPIO{}'.format(self.GPIO_PIN))
 
 if __name__ == '__main__' :
     print('This is a module for using Led.')
