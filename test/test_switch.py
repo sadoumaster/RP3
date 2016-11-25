@@ -18,11 +18,11 @@ GPIO.output(led, GPIO.LOW)
 try:
     while True:
         if GPIO.input(switch) == GPIO.HIGH:
-#            GPIO.output(led, GPIO.HIGH)
-            print('on')
+            GPIO.output(led, GPIO.HIGH)
+#            print('on')
         else:
-#            GPIO.output(led, GPIO.LOW)
-            print('off')
+            GPIO.output(led, GPIO.LOW)
+#            print('off')
         sleep(0.01)
 
 except KeyboardInterrupt:
