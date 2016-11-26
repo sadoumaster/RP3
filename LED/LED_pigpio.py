@@ -32,15 +32,15 @@ class LED_pigpio():
             sleep(interval)
 
     def pwm(self, power=100):#0<＝power<＝100
-        if 0<=power<=100:
-            self.power=math.ceil(255/power*100)
+        if 0<power<=100:
+            self.power=math.ceil(255/100*power)
             self.pi.set_PWM_dutycycle(self.GPIO_PIN, self.power)
         elif power>100: self.pi.set_PWM_dutycycle(self.GPIO_PIN, 255)
-        elif power<0:   self.pi.set_PWM_dutycycle(self.GPIO_PIN, 0)
+        elif power<=0:   self.pi.set_PWM_dutycycle(self.GPIO_PIN, 0)
             
     def on_off_smooth(self, on_off=None, circle_sec=0.5):
-        if on_off=='on':    self.sin_curve_pwm('on', circle_sec)
-        elif on_off=='off': self.sin_curve_pwm('off', circle_sec)
+        if on_off=='on':    self.sin_curve_pwm(on_off='on', circle_sec=circle_sec)
+        elif on_off=='off': self.sin_curve_pwm(on_off='off', circle_sec=circle_sec)
         else:
             print('func on_off_smooth needs \'on\' or \'off\'')
             pass
@@ -49,8 +49,8 @@ class LED_pigpio():
         pattern_on = ('on', 'ON', 'On', True, 1, '1')
         pattern_off = ('off', 'OFF', 'Off', False, 0, '0')
         if resolution == None: # decide resolution by circle_sec
-            resolution = math.ceil(circle_sec * 20)
-        for i in range(resolution): #0-100-0
+            resolution = math.ceil(circle_sec*30)
+        for i in range(1, resolution+1): #0-100-0
             if on_off == None:
                 degrees = 2 * math.pi/resolution * i
                 interval = circle_sec / resolution
@@ -65,6 +65,7 @@ class LED_pigpio():
                 degrees = math.pi/resolution * i
                 interval = circle_sec / resolution
                 self.pwm(power = (math.sin(degrees+(math.pi/2))+1)*100/2)
+                print(i)
                 sleep(interval)
             else:
                 print('''on_off can read
@@ -74,7 +75,7 @@ class LED_pigpio():
 
     def blink_1f_pwm(self, circle_sec=5, resolution=None):
         from RP3.curve1f import curve_1f_generator
-        if resolution==None: resolution=circle_sec*20
+        if resolution==None: resolution=circle_sec*30
         interval=circle_sec/resolution
         fluctuation = curve_1f_generator(resolution=resolution)#-1.5~1.5の数字
         try:

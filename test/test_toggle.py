@@ -14,7 +14,7 @@ def my_callback(channel):
         LedState = not LedState
         GPIO.output(LED, LedState)
 
-LED, switch=25, 24
+LED, switch=21, 26
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(switch, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
