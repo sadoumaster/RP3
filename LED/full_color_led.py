@@ -63,14 +63,17 @@ try:
     for i in range(255):
         R_led, G_led, B_led=i, 0, 0
         on()
+        reset()
         sleep(0.02)
     for i in range(255):
         R_led, G_led, B_led=0, i, 0
         on()
+        reset()
         sleep(0.02)
     for i in range(255):
         R_led, G_led, B_led=0, 0, i
         on()
+        reset()
         sleep(0.02)
     off()
 except KeyboardInterrupt:
