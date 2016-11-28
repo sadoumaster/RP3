@@ -75,6 +75,15 @@ try:
         on()
         reset()
         sleep(0.02)
+    for i in range(255):
+        R_led=i
+        for j in range(255):
+            G_led=j
+            for k in range(255):
+                B_led=k
+                on()
+                reset()
+                sleep(0.0001)
     off()
 except KeyboardInterrupt:
     GPIO.cleanup()
