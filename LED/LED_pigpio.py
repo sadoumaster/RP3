@@ -20,13 +20,13 @@ class LED_pigpio():
         self.pi.set_mode(self.GPIO_PIN, pigpio.OUTPUT)
         print ('set GPIO{} for LED'.format(self.GPIO_PIN))
     
-    def on(self):  self.pi.write(self.GPIO_PIN, 1)
+    def on(self):  self.pwm(power=100)
     
-    def off(self): self.pi.write(self.GPIO_PIN, 0)
+    def off(self): self.pwm(power=0)
     
-    def blink(self, duration=0.5, interval=0.5 ,times=5):
+    def blink(self, duration=0.5, interval=0.5 ,times=5, power=100):
         for i in range(times):
-            self.on()
+            self.on(power)
             sleep(duration)
             self.off()
             sleep(interval)
@@ -38,9 +38,11 @@ class LED_pigpio():
         elif power>100: self.pi.set_PWM_dutycycle(self.GPIO_PIN, 255)
         elif power<=0:   self.pi.set_PWM_dutycycle(self.GPIO_PIN, 0)
             
-    def on_off_smooth(self, on_off=None, circle_sec=0.5):
-        if on_off=='on':    self.sin_curve_pwm(on_off='on', circle_sec=circle_sec)
-        elif on_off=='off': self.sin_curve_pwm(on_off='off', circle_sec=circle_sec)
+    def on_off_smooth(self, on_off='on', circle_sec=0.5):
+        if on_off=='on':
+            self.sin_curve_pwm(on_off='on', circle_sec=circle_sec)
+        elif on_off=='off':
+            self.sin_curve_pwm(on_off='off', circle_sec=circle_sec)
         else:
             print('func on_off_smooth needs \'on\' or \'off\'')
             pass

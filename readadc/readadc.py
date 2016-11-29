@@ -31,6 +31,7 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         adcout<<=1
         if i>0 and GPIO.input(misopin)==GPIO.HIGH:adcout|=0x1
     GPIO.output(cspin, GPIO.HIGH)
+    #0-4095
     return adcout
 
 if __name__=='__main__':
