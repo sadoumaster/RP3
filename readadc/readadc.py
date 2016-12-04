@@ -32,7 +32,7 @@ def readadc(adcnum, clockpin, mosipin, misopin, cspin):
         if i>0 and GPIO.input(misopin)==GPIO.HIGH:adcout|=0x1
     GPIO.output(cspin, GPIO.HIGH)
     #0-4095
-    return adcout
+    return adcout#0-4095 0b111111111111 0xfff
 
 if __name__=='__main__':
     GPIO.setmode(GPIO.BCM)
@@ -47,8 +47,8 @@ if __name__=='__main__':
     
     try:
         while True:
-            inputVal0=readadc(7, SPICLK, SPIMOSI, SPIMISO, SPICS)
-            print(inputVal0)
+            inputVal0=readadc(7, SPICLK, SPIMOSI, SPIMISO, SPICS)#0-4095
+            print('{}kΩ'.format(inputVal0*2.442))#10000Ω/4095=2.442
             sleep(0.2)
     
     except KeyboardInterrupt:pass
