@@ -20,6 +20,8 @@ pi.set_mode(LED, pigpio.OUTPUT)
 pi.set_mode(switch, pigpio.INPUT)
 pi.write(LED, 0)
 pi.set_pull_up_down(gpio=switch, pud=pigpio.PUD_DOWN)
+#Level changes on the GPIO are ignored until a level which has been stable 
+#for steady microseconds is detected. 
 pi.set_noise_filter(user_gpio=switch, steady=200000, active=0)
 pi.callback(user_gpio=switch, edge=pigpio.RISING_EDGE, func=my_callback)
 
