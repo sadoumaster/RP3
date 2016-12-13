@@ -23,11 +23,24 @@ GPIO.setup(SPIMISO, GPIO.IN)
 GPIO.setup(SPICS, GPIO.OUT)
 
 try:
-    with LED_pigpio(24) as led:
+    with LED_pigpio(26) as led:
+        led_state=0
         while True:
             inputVal0=readadc(0, SPICLK, SPIMOSI, SPIMISO, SPICS)
-            led.pwm((1-inputVal0/4095)*100)
-            sleep(0.01)
+            print(inputVal0)
+            if inputVal0<1500 and led_state==0:
+                led.on_off_smooth('on', 0.2)
+                led.on()
+                led_state=1
+            elif inputVal0<1500 and led_state==1:
+                led.on()
+            elif inputVal0>=1500 and led_state==1:
+                led.on_off_smooth('off', 0.2)
+                led.off()
+                led_state=0
+            else:led.off()
+#            led.pwm((1-inputVal0/4095)*100)
+            sleep(0.3)
 
 except KeyboardInterrupt:pass
 

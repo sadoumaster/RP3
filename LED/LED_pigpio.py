@@ -67,7 +67,6 @@ class LED_pigpio():
                 degrees = math.pi/resolution * i
                 interval = circle_sec / resolution
                 self.pwm(power = (math.sin(degrees+(math.pi/2))+1)*100/2)
-                print(i)
                 sleep(interval)
             else:
                 print('''on_off can read

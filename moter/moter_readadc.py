@@ -15,7 +15,7 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
 #---setting for adc converter---
-adc_pin0=0
+adc_pin=0
 SPICLK=11
 SPIMOSI=10
 SPIMISO=9
@@ -31,7 +31,7 @@ try:
         moter0.pwm(0)
         moter1.pwm(0)
         while True:
-            inputVal0=readadc(adc_pin0, SPICLK, SPIMOSI, SPIMISO, SPICS)
+            inputVal0=readadc(adc_pin, SPICLK, SPIMOSI, SPIMISO, SPICS)
             if inputVal0>100 and inputVal0<2048:#101-2047
                 moter1.pwm(0)
                 duty=(2048-inputVal0)*70/2048
