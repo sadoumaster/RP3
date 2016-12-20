@@ -55,7 +55,7 @@ def main():
     t=0
     while True:
         now_temp = read_temp()
-        pg = p(temp, target, 2.7)
+        pg = p(now_temp, target, 2.7)
         ig = i(prev_temp, now_temp, target, 0.005)
         power = pg + ig
         if power > 0:
